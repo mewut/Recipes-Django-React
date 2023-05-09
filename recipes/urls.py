@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import include, path
+from api.views import CategoryView, RecipeView, ReviewView
 
 
 def home(request):
@@ -27,9 +28,13 @@ def home(request):
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('api', include('api.urls')),
-    # path("ui/", include("frontend.urls")),
     path('', home),
+    path('category/', CategoryView.as_view(), name='category'),
+    path('recipe/', RecipeView.as_view(), name='recipe'),
+    path('review/', ReviewView.as_view(), name='review'),
+    # path('api', include('api.urls')),
+    # path("ui/", include("frontend.urls")),
+    
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
